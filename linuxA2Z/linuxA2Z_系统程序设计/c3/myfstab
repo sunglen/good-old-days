@@ -1,0 +1,11 @@
+/dev/cdrom              /mnt/cdrom              iso9660 noauto,ro       0 0
+/dev/fd0                /mnt/a:                 msdos   noauto          0 1
+/dev/fd0                /mnt/floppy             ext2    noauto          0 0
+/dev/hda1               /mnt/c:                 msdos   noauto          0 1
+/dev/hda3               /                       ext2    defaults        1 1
+/dev/hda4               swap                    swap    defaults        0 0
+/dev/hda5               /mnt/d:                 msdos   noauto          0 1
+/dev/hda6               /mnt/e:                 msdos   noauto          0 1
+/dev/hda7               /home                   ext2    defaults        1 2
+none                    /dev/pts                devpts  mode=0622       0 0
+none                    /proc                   proc    defaults        0 0

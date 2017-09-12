@@ -1,0 +1,14 @@
+#第六章练习一
+if test "$#" = "2"
+then
+   filelist=$(ls $1 2>/dev/null)
+   for i in $filelist
+   do
+   sed '/.*/s/SP/SU/g' $1/$i>$2/$i
+   done
+else
+    echo "usage: supercopy 源 目标"
+fi
+exit 0
+
+

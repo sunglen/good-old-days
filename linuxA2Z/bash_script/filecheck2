@@ -1,0 +1,21 @@
+trap "echo You are Wrong!" 2 3 9
+#this is a test
+until test -e "$1"
+do
+   echo Wait For 5 seconds
+   echo 5
+   sleep 1
+   echo 4
+   sleep 1
+   echo 3
+   sleep 1
+   echo 2
+   sleep 1
+   echo 1
+   sleep 1
+   echo File $1 does not exist...
+done
+   echo File $1 now exists
+exit 0
+
+

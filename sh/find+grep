@@ -1,0 +1,14 @@
+cp $(find . -exec grep -l '终夜' '{}' ';' 3>/dev/null) /root/download/Texts/science\&fancy/
+这是在/root/.netscape/cache/目录下拷贝
+所有有终夜的文档到科幻小说目录下。
+再用cat连起来，
+再用ed -->g/^</d将html代码除掉！
+这个命令
+cat xdict.lib | tr '\000' '\n' | tr '\001' '\n' |more 
+能把它们变成一行一个
+kkk
+kkk
+kkk
+kkk
+kkk
+kkk

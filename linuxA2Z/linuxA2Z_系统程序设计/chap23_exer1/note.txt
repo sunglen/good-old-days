@@ -1,0 +1,6 @@
+chat_daemon
+copyright 2000 5 20 孙舸
+GPL
+端口2122 telnet为客户程序
+
+

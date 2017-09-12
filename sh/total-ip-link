@@ -1,0 +1,4 @@
+awk '
+/Connect time/ { total+=$8 }
+END { print total/60 }
+' /var/log/messages

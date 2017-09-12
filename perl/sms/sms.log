@@ -1,0 +1,17 @@
+[sunge@autopost]$./sms.pl -n 13545187680 -f test.sms
+got index.asp.
+send message success! times: 1.
+HTTP/1.1 302 (Found) Object moved
+Cache-Control: private
+Connection: Keep-Alive
+Date: Wed, 29 Oct 2003 15:30:39 GMT
+Location: http://www.bkwww.com/sms/zexiao.asp?s=z8ggyfo6fDEzNTQ1MTg3NjgwfMTjyse087u1tbCjoQoKfMvv9LQ=
+Server: Microsoft-IIS/5.0
+Content-Length: 121
+Content-Type: text/html
+Client-Date: Wed, 29 Oct 2003 15:38:27 GMT
+Client-Peer: 211.157.101.46:80
+Title: Object moved
+ 
+<head><title>Object moved</title></head>
+<body><h1>Object Moved</h1>This object may be found <a HREF="">here</a>.</body>

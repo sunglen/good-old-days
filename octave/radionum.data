@@ -1,0 +1,48 @@
+# Created by Octave 2.0.16, Sat Dec  8 19:09:55 2001 <root@localhost.localdomain>
+# name: m
+# type: scalar
+1
+# name: n
+# type: scalar
+8
+# name: p
+# type: matrix
+# rows: 2
+# columns: 1
+ -0.018026147928201
+ 0.743533104096297
+# name: r
+# type: matrix
+# rows: 8
+# columns: 1
+ 0.292682926829268
+ 0.792452830188679
+ 0.810526315789474
+ 0.476744186046512
+ 0.330708661417323
+ 0.0917159763313611
+ 0.0460704607046072
+ 0.028497409326425
+# name: x
+# type: matrix
+# rows: 8
+# columns: 1
+ 4.1
+ 5.3
+ 9.5
+ 17.2
+ 25.4
+ 33.8
+ 36.9
+ 38.6
+# name: lastyear
+# type: scalar
+1983
+# name: num
+# type: matrix
+# rows: 1
+# columns: 9
+ 4.1 5.3 9.5 17.2 25.4 33.8 36.9 38.6 39.7
+# name: firstyear
+# type: scalar
+1975

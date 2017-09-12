@@ -1,0 +1,8 @@
+#watch_ip-up: watch for the changes of ip-up.local script's log file 
+#/var/log/ip-up.log
+
+PATH=/bin:/usr/bin
+LOG=/var/log/ip-up.log
+echo "检查$LOG..."
+exec checkmail $LOG &
+exit 0

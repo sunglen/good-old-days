@@ -1,0 +1,16 @@
+#rain: define what should you do when you go in rain.
+
+a=0.4;b=0.2;
+rol=100;
+D=100;
+ux=-1;uy=1;uz=1;
+if(ux>=0)
+	v=linspace(0.1,1.5,300);
+
+else
+	v=linspace(1,4,300);
+endif
+
+q=rol.*D.*(abs(ux-v).*(ux<=0 || v<ux).+a.*uy.+b.*uz)./(v.*((ux.-v).^2.+uy.^2.+uz.^2).^0.5);
+
+save rain.data;

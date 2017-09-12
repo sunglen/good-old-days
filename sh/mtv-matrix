@@ -1,0 +1,24 @@
+#mtv-matrix: display mpegtv in a matrix.
+#use mtvp.
+
+SCREEN_LENGTH=800
+Y=5
+LENGTH=$(($SCREEN_LENGTH/$Y))
+SCREEN_WIDTH=600
+X=4
+WIDTH=$(($SCREEN_WIDTH/$X))
+
+case $# in
+    0) { echo "Usage: $0 parameter-passto-mtvp mpeg-files" 1>&2 ; exit 1; }
+esac
+p=$1
+shift
+n=0
+for i in $@
+do
+    x=$(($n%$Y*$LENGTH))
+    y=$(($n/$Y*$WIDTH))
+    mtvp $p -G=+$x+$y "$i" &
+    n=$(($n+1))
+done
+    

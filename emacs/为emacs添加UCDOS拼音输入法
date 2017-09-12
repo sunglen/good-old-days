@@ -1,0 +1,71 @@
+为emacs添加UCDOS拼音输入法
+
+sunge@etang.com 
+改编自debian-chinese-gb@lists.debian.org上一贴
+
+1)下载cxterm_5.1p1.orig.tar.gz，从debian下载。
+2)从中解出cxterm-5.1p1/dict/gb/UCDOSPY.tit
+3)启动emacs:
+M-x titdic-convert RET
+UCDOSPY.tit RET
+在UCDOSPY.tit相同目录下生成了UCDOSPY.el
+但是这个UCDOSPY.el并不能直接使用。
+4)用emacs打开UCDOSPY.el:
+C-x C-f UCDOSPY.el
+可以看到形如：
+("anran" "(黯然)(岸然)")
+("anshi" "(按时)(暗示)(暗室)")
+要把它们变成：
+("anran" ["黯然""岸然"])
+("anshi" ["按时""暗示""暗室"])
+于是利用 replace-regexp
+M-x replace-regexp RET
+ "(\(.+\))")$RET
+ ["\1"])RET
+注意开头的空格。
+因为文件较大，需要等待一段时间。
+再次替换：
+M-x replace-regexp RET
+)(RET
+""RET
+替换完毕。
+但是还有以下的情况：
+("xian" "线现先县限见显鲜献险陷宪纤洗掀弦铣腺锨仙咸贤衔舷闲涎嫌馅羡冼苋莶藓岘猃暹娴氙燹祆鹇痫蚬筅籼酰跣跹霰(西安)")
+你需要手工作如下变换，
+例如 ("xian" ["线""现"..."霰""西安"])
+5)安装该输入法：
+将UCDOSPY.el复制到emacs的输入法目录，
+编译为elc，
+仿造py-punct.el制作一个ucdospy-punct.el，
+使ucdospy和punct联用，即以v开头可以输标点符号，
+编译为ucdospy-punct.elc。
+当然也可以直接使用UCDOSPY。
+;; quail/ucdospy-punct.el 
+;; Quail packages for Chinese (ucdospy + extra symbols)
+(require 'quail)
+
+(load "quail/UCDOSPY")
+(load "quail/Punct")
+
+(quail-define-package
+ "chinese-ucdospy-punct" "Chinese-GB" "UCDOS拼符"
+ t
+ "UCDOS汉字输入 拼音方案 and `v' for 标点符号输入
+
+This is the combination of Quail packages \"chinese-py\" and \"chinese-punct\".
+You can enter normal Chinese characters by the same way as \"chinese-ucdospy\".
+And, you can enter symbols by typing `v' followed by any key sequences
+defined in \"chinese-punct\".
+
+For instance, typing `v' and `%' insert `％'.
+")
+
+(setcar (nthcdr 2 quail-current-package)
+	(nth 2 (assoc "chinese-ucdospy" quail-package-alist)))
+
+(quail-defrule "v" (nth 2 (assoc "chinese-punct" quail-package-alist)))
+
+然后在.emacs加上：
+(setq default-input-method "chinese-ucdospy-punct")
+以后用C-\即可启动UCDOSPY了，用v可以输入符号。
+比起mule自带的py-punct，总算可以输入词汇了。

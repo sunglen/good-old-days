@@ -1,0 +1,6 @@
+while test -e $1
+do
+    sleep 5
+done
+    echo file $1 does not exist...
+exit 0

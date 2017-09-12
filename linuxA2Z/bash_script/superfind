@@ -1,0 +1,31 @@
+if test "$#" = "2" #测试参数个数
+then
+  if ls $1 &>/dev/null #利用它测试目录
+  then
+filelist=$(ls $1)
+for i in $filelist
+do
+if test -f "$1/$i"
+then
+   if test -r "$1/$i"
+   then
+      howbig=$(ls -l $1/$i|tr -s ' '|cut -d' ' -f5)
+      if test "$howbig" -lt "$2"
+       then
+        echo "$i"
+        fi
+     fi
+ fi
+done
+  else
+  echo "Sorry,I can not find this directory.:->"
+  exit 1
+fi
+else
+  echo "usage: superfind 目录名 最大字节数"
+  exit 1
+fi
+exit 0
+
+
+

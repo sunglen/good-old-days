@@ -1,0 +1,16 @@
+if test "$#" -ne 1
+then
+       echo "usage: later <hours>"
+       exit 1
+fi
+now=$(date)
+hour=$(echo $now|cut -b 11-12)
+minsec=$(echo $now|cut -b 13-18)
+hour=$[($hour+$1)%24]
+if test $hour -ge 12
+then
+       echo $[$hour-12]$minsec pm
+else
+       echo $hour$minsec am
+fi
+exit 0

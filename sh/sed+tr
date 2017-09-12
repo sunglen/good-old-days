@@ -1,0 +1,2 @@
+sed '/<script/,/<\/script>/d' file | sed '1,$s/<.*>//' | tr '\r' '\n'
+| tr -d '\n'|less
