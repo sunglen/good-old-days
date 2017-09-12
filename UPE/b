@@ -1,0 +1,14 @@
+# To unbundle,sh this file
+echo bundle 1>&2
+cat >bundle <<'End of bundle'
+#bundle-group files into distribution package
+
+echo '# To unbundle,sh this file'
+for i in $*
+do
+   echo "echo $i 1>&2"
+   echo "cat >$i <<'End of $i'"
+   cat $i
+   echo "End of $i"
+done
+End of bundle

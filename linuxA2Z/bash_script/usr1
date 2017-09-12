@@ -1,0 +1,12 @@
+#useage is : usr1 login_name
+for i in $*
+do
+if grep "^$i:" /etc/passwd &>/dev/null 
+then
+     echo $i is a valid login name
+else
+     echo $i is not a valid login name
+fi
+done
+exit 0
+

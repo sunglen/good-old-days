@@ -1,0 +1,216 @@
+\documentclass[letterpaper]{article}
+\nonstopmode
+\usepackage{linuxdoc-sgml}
+\usepackage{qwertz}
+\usepackage{url}
+\usepackage[latin1]{inputenc}
+\usepackage{t1enc}
+\usepackage[english]{babel}
+\usepackage{epsfig}
+\usepackage{null}
+\usepackage{CJK}
+\usepackage{indentfirst}
+\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\CJKboldshift}{0.024em}
+\def\addbibtoc{
+\addcontentsline{toc}{section}{\numberline{\mbox{}}\relax\bibname}
+}%end-preamble
+\setcounter{page}{1}
+\title{为emacs添加UCDOS拼音输入法}
+\author{Sun Ge, {\ttfamily sunge@etang.com}}
+\date{\$Id: ucdospy-for-emacs.sgml,v 1.1 2003/11/23 15:20:00 sunge Exp \$}
+\abstract{改编自debian-chinese-gb@lists.debian.org上一陈年老贴。注意，UCDOSPY输入码表UCDOSPY.tit版权不明。}
+
+
+\begin{document}
+\begin{CJK*}{GB}{song}
+\CJKtilde%
+\CJKcaption{GB}%
+\settowidth{\parindent}{　　}%
+\maketitle
+\tableofcontents
+
+\section{获取UCDOSPY输入码表}
+
+\begin{enumerate}
+\item 从debian或其他站下载{\ttfamily cxterm\_5.1p1.orig.tar.gz}，用搜索引擎搜吧。
+\item 从中解出{\ttfamily cxterm-5.1p1/dict/gb/UCDOSPY.tit}。
+\end{enumerate}
+
+
+
+
+
+\section{制作UCDOSPY.el}
+
+
+\subsection{从tit到el}
+
+\begin{tscreen}
+\begin{verbatim}
+$emacs
+M-x titdic-convert RET
+UCDOSPY.tit RET
+\end{verbatim}
+\end{tscreen}
+
+在UCDOSPY.tit相同目录下生成了UCDOSPY.el
+但是这个UCDOSPY.el并不能直接使用。
+
+
+
+
+\subsection{修改el}
+
+\begin{tscreen}
+\begin{verbatim}
+C-x C-f UCDOSPY.el
+\end{verbatim}
+\end{tscreen}
+
+可以看到形如：
+\begin{tscreen}
+\par
+\addvspace{\medskipamount}
+\nopagebreak\hrule
+\begin{verbatim}
+("anran" "(黯然)(岸然)")
+("anshi" "(按时)(暗示)(暗室)")
+\end{verbatim} 
+\nopagebreak\hrule 
+\addvspace{\medskipamount}
+\end{tscreen}
+
+要把它们变成：
+\begin{tscreen}
+\par
+\addvspace{\medskipamount}
+\nopagebreak\hrule
+\begin{verbatim}
+("anran" ["黯然""岸然"])
+("anshi" ["按时""暗示""暗室"])
+\end{verbatim} 
+\nopagebreak\hrule 
+\addvspace{\medskipamount}
+\end{tscreen}
+
+于是利用 replace-regexp 第一次替换：
+\begin{tscreen}
+\begin{verbatim}
+M-x replace-regexp RET
+ "(\(.+\))")$RET
+ ["\1"])RET
+\end{verbatim}
+\end{tscreen}
+
+{\itshape 注意正则表达式开头的空格。\/}
+
+因为文件较大，需要等待一段时间后进行第二次替换：
+\begin{tscreen}
+\begin{verbatim}
+M-x replace-regexp RET
+)(RET
+""RET
+\end{verbatim}
+\end{tscreen}
+
+替换完毕。
+
+但是还有以下的情况：
+\begin{tscreen}
+\par
+\addvspace{\medskipamount}
+\nopagebreak\hrule
+\begin{verbatim}
+("xian" "线现先县限见显鲜献险陷宪纤洗掀弦铣腺锨仙咸贤衔舷闲涎嫌馅羡冼苋莶藓岘猃暹娴氙燹祆鹇痫蚬筅籼酰跣跹霰(西安)")
+\end{verbatim} 
+\nopagebreak\hrule 
+\addvspace{\medskipamount}
+\end{tscreen}
+
+你需要手工变换为，
+\begin{tscreen}
+\par
+\addvspace{\medskipamount}
+\nopagebreak\hrule
+\begin{verbatim}
+("xian" ["线""现"..."霰""西安"])
+\end{verbatim} 
+\nopagebreak\hrule 
+\addvspace{\medskipamount}
+\end{tscreen}
+
+
+
+
+
+\section{安装ucdospy-punct输入法}
+
+将修改后的UCDOSPY.el复制到emacs的输入法目录，
+编译为UCDOSPY.elc，
+为了使ucdospy和punct联用，即以v开头可以输标点符号，
+可以仿造py-punct.el制作一个ucdospy-punct.el：
+\begin{tscreen}
+\par
+\addvspace{\medskipamount}
+\nopagebreak\hrule
+\begin{verbatim}
+;; quail/ucdospy-punct.el 
+;; Quail packages for Chinese (ucdospy + extra symbols)
+(require 'quail)
+
+(load "quail/UCDOSPY")
+(load "quail/Punct")
+
+(quail-define-package
+ "chinese-ucdospy-punct" "Chinese-GB" "UCDOS拼符"
+ t
+ "UCDOS汉字输入 拼音方案 and `v' for 标点符号输入
+
+This is the combination of Quail packages \"chinese-ucdospy\" and \"chinese-punct\".
+You can enter normal Chinese characters by the same way as \"chinese-ucdospy\".
+And, you can enter symbols by typing `v' followed by any key sequences
+defined in \"chinese-punct\".
+
+For instance, typing `v' and `%' insert `％'.
+")
+
+(setcar (nthcdr 2 quail-current-package)
+        (nth 2 (assoc "chinese-ucdospy" quail-package-alist)))
+
+(quail-defrule "v" (nth 2 (assoc "chinese-punct" quail-package-alist)))
+\end{verbatim} 
+\nopagebreak\hrule 
+\addvspace{\medskipamount}
+\end{tscreen}
+
+编译为ucdospy-punct.elc。
+
+然后在.emacs加上：
+\begin{tscreen}
+\par
+\addvspace{\medskipamount}
+\nopagebreak\hrule
+\begin{verbatim}
+(setq default-input-method "chinese-ucdospy-punct")
+\end{verbatim} 
+\nopagebreak\hrule 
+\addvspace{\medskipamount}
+\end{tscreen}
+
+
+
+
+
+\section{使用}
+
+用``C-$\backslash$''即可启动UCDOSPY了，用v可以输入符号。
+
+比起mule自带的py-punct，总算可以输入词汇了。
+再可根据自己实际情况，为该输入法添加词汇或符号。
+
+
+
+\newpage
+\end{CJK*}
+\end{document}

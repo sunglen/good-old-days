@@ -1,0 +1,14 @@
+#这是第六章第三题
+i=1
+while true
+do
+read text
+if test "$text" = "EOF"
+then
+    exit 0
+else
+   echo $i $text
+   i=$[$i+1]
+fi
+done
+

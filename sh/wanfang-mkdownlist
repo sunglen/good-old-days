@@ -1,0 +1,19 @@
+# 该程序输出下载万方论文的wget命令列表，
+# 输入为mst.dll的两种输出格式，一种是2001年前的，一种是2002年后的。
+# 他妈的一定要注意把可能出现空格的参数引起来!
+cat $@ |\
+tr -d '\015' |\
+awk '
+BEGIN { n=0 }
+/【论文题名】/ { title[n]=$0 }
+/查看全文/ { fulltext[n]=$2 ; n++ } 
+/<b>PDF文件<\/b>/ { print $0 }
+END { for (i=0; i<n; i++)
+	print fulltext[i], title[i]
+}' |\
+sed '
+/<b>PDF文件<\/b>/s/^.\+_blank>\(.\+\)<\/a>.\+\(~.\+\)\\\(.\+\.pdf\)[ \t]\+target.\+$/wget http:\/\/sxu:sxudata@wanfang.calis.edu.cn\/\2\/\3 -nc -O "\1.pdf"/
+/^href/s/^.\+\(~.\+\)\\\(.\+\) .\+<\/b>\(.\+\)$/wget http:\/\/sxu:sxudata@wanfang.calis.edu.cn\/\1\/\2 -nc -O "\3.pdf"/
+'
+
+

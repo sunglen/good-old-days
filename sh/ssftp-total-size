@@ -1,0 +1,5 @@
+cat ssftp | sed -n '/total 26081/,/^$/p' | sed '1d
+$d' | awk 'BEGIN { size=0 }
+{ size+=$5 }
+END { printf("download it need "size/(1024*5*60)" minutes\n")}'
+

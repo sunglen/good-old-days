@@ -1,0 +1,25 @@
+#checkmail: watch mailbox for growth.
+
+PATH=/bin:/usr/bin
+
+case $# in
+	0) { echo "Usage: checkmail mailbox time" 1>&2 ; exit 1 ; }
+esac
+TIME=${2-30}
+MAILSIZE=$(ls -l $1 2>/dev/null) 
+if test -z "$MAILSIZE"
+then
+	echo "mailbox not found." 1>&2
+	exit 1
+fi
+trap "echo $1的最后几行：;tail -n 10 $1" 1 2 15
+while :
+do
+	NEWSIZE=$(ls -l $1)
+	echo $MAILSIZE $NEWSIZE #no ploblem.
+	MAILSIZE="$NEWSIZE"
+	sleep $TIME
+done | awk '
+$5 < $14 { printf("\ayou have mail.\n") }
+'
+exit 0

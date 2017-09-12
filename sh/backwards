@@ -1,0 +1,6 @@
+# backwards: print input in backward line order.
+awk '
+{ line[NR]=$0 }
+END { for(i=NR; i>=1; i--) print line[i] }
+' $@
+

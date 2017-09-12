@@ -1,0 +1,13 @@
+case "$#" in
+1)
+    cat>>$1
+    ;;
+2)
+    cat<$1>>$2
+    ;;
+*)
+    echo "usage: append out_file [in_file]"
+    ;;
+esac
+exit 0
+

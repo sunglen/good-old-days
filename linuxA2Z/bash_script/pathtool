@@ -1,0 +1,9 @@
+# 检查PATH变量是否包含/usr/local/bin目录
+if echo $PATH|grep '/usr/local/bin' &>/dev/null
+then
+        echo I found it!
+else
+        echo I am sorry!
+fi
+exit 0
+

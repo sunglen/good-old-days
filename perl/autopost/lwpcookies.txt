@@ -1,0 +1,4 @@
+#LWP-Cookies-1.0
+Set-Cookie3: ID=12345; path="/cgi-bin/"; domain="127.0.0.1"; path_spec; expires="2002-01-04 16:06:16Z"; version=0
+Set-Cookie3: name=NotYet; path="/cgi-bin/"; domain="127.0.0.1"; path_spec; expires="2002-01-04 17:04:39Z"; version=0
+Set-Cookie3: passwd=xxxxxxxxx; path="/cgi-bin/"; domain="127.0.0.1"; path_spec; expires="2002-01-04 17:04:39Z"; version=0

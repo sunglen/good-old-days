@@ -1,0 +1,21 @@
+# another version of watchwho.--sunge,四 8月 16 16:21:37 GMT 2001
+while :
+do
+new=$(who)
+(echo $old ; echo $new) |
+awk '
+{ line[NR]=$0 }
+NR==1 { for(i=1 ; i<=NF ; i+=5) who_old[$i]=$i"	"$(i+1)" "$(i+2)" "$(i+3)" "$(i+4) }
+NR==2 { for(i=1 ; i<=NF ; i+=5) who_new[$i]=$i"	"$(i+1)" "$(i+2)" "$(i+3)" "$(i+4) }
+END {
+for( name in who_old){ #who exit
+if(who_new[name] == "") printf("%s--he(she) has exited!\n",who_old[name])
+}
+for( name in who_new){ #who join
+if(who_old[name] == "") printf("%s--he(she) has joined!\n",who_new[name])
+}
+}
+'
+old=$new
+sleep 30
+done

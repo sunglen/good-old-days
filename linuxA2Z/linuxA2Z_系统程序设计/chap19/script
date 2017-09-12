@@ -1,0 +1,8 @@
+pidlist=$(ps -u|grep "^$LOGNAME"|grep -v $$|grep -v 'login'|tr -s " "|cut -f2 -d" ")
+for pid in $pidlist
+do
+
+  kill -9 $pid 
+done
+
+

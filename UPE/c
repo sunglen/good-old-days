@@ -1,0 +1,19 @@
+# To unbundle,sh this file
+echo -rw-r--r--   1 root     root           50 Nov 26  2000 poem 1>&2
+cat >poem <<'End of poem'
+不明白的是为何你情愿
+让风尘刻划你的样子
+'THE END'
+End of poem
+echo -rw-r--r--   1 root     root          120 Nov 26  2000 ter.c 1>&2
+cat >ter.c <<'End of ter.c'
+#include <stdio.h>
+
+main(void)
+{
+   char buf[10];
+   while(read(0,buf,10))
+      printf("buf:%s\n",buf);
+   return 0;
+}
+End of ter.c

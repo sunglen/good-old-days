@@ -1,0 +1,13 @@
+#population: generate r, x  which prefer to used by polyfit.
+
+pop=[3.9,5.3,7.2,9.6,12.9,17.1,23.2,31.4,38.6,50.2,62.9,76.0,92.0,106.5,123.2,131.7,150.7,179.3,204.0,226.5,251.4];
+
+firstyear=1790;
+lastyear=1990;
+m=10;
+for n=1:(lastyear-firstyear)/m
+	x(n)=(pop(n)+pop(n+1))/2;
+	r(n)=(pop(n+1)/pop(n))^(1/m)-1;
+endfor
+p=polyfit(x,r,1);
+save population.data

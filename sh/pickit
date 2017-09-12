@@ -1,0 +1,10 @@
+# pickit: pick a argument .
+
+for i in "$@"
+do
+	echo -n "$i?" >/dev/tty
+	read choice
+	case $choice in
+		y*|Y*) echo $i
+	esac
+done

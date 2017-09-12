@@ -1,0 +1,109 @@
+<html>
+<head>
+<style>
+A {font-size:9pt;line-height: 150%}
+BODY {font-size:9pt;line-height: 150%}
+td {font-size:9pt;line-height: 150%}
+table {font-size:9pt;line-height: 150%}
+font {font-size:9pt;line-height: 150%}
+A:link{color:#000000; text-decoration: none;}
+A:visited{color:#000000;text-decoration: none}
+A:hover{color:#663399; font-style:bold;text-decoration: underline}
+white {  font: 9pt/12pt "宋体" line-height: 14pt;color:#ffffff;text-decoration:none}
+white A:link{color:#ffffff;text-decoration:none}
+white A:visited{color:#ffffff;text-decoration:none}
+white A:hover{color:#000000;text-decoration:underline}
+10p {  font: 10.5pt "宋体"}
+</style>
+<title>.:::蓝色沸点:::.</title>
+</head>
+<body topmargin="0">
+<div align="center">
+  <table border="0" width="754" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="218" height="60" valign="bottom"> <img id=$ihome_logo$ src="../images/blue.JPG" alt="实达铭泰"></td>
+      <td width="468" height="60" colspan="2"><img id=$ihome_banner$ src="../images/logo.jpg" alt="实达铭泰" width="468" height="60"></td>
+      <td width="68" height="76" background="../images/g-02.gif" rowspan="2">　</td>
+    </tr>
+    <tr> 
+      <td width="218" height="16"></td>
+      <td width="374" height="16"> 
+        <p align="left"> <span id=$ihome_directory_tree$> 
+          <!--ihome_directory_tree-->
+          <!--/ihome_directory_tree-->
+          </span></p>
+      </td>
+      <td width="94" height="16" background="../images/g-01.gif"> 
+        <p align="right"></p>
+      </td>
+    </tr>
+  </table>
+  <table border="0" width="754" cellspacing="0" cellpadding="0" height="1">
+    <tr> 
+      <td width="100%"></td>
+    </tr>
+  </table>
+  <table border="0" width="754" cellspacing="0" cellpadding="0" height="33">
+    <tr> 
+      <td width="15"><IMG border=0 height=33 src="../images/g-03.gif" width=15></td>
+      <td width="739" background="../images/g-04.gif"></td>
+    </tr>
+  </table>
+  <table border="0" width="754" cellspacing="0" cellpadding="0" height="41">
+    <tr> 
+      <td width="690" height="22"> 
+        <div align="center"><font color="#FF0000"><b>最短树的Kruskal算法</b></font> 
+        </div>
+      </td>
+      <td width="11" valign="top" height="22"> 
+        <p align="right"></p>
+      </td>
+      <td width="53" background="../images/g-06.gif" height="22">　</td>
+    </tr>
+    <tr> 
+      <td width="690" height="19"> 
+        <p align="center"> 
+        <div id="ihomecontent"></div>
+        <p>基本思想： </p>
+        <p> 设图G=(V,E)是一简单连通图，|V|=n,|E|=m,每条边e都有权w，假定是边的长。<br>
+          Kruskal法的基本思想：边按权增序排序，然后再不够成回路的情况下，择优取权最<br>
+          小的边。 </p>
+        <p>算法描述： </p>
+        <p>（1）对边进行排序<br>
+          （2）初始化 w=0,T&lt;-空，k=0,t=0<br>
+          （3）若t=n-1,转（6）。否则转（4）。<br>
+          （4）e若构成回路，则k=k+1,转（4）<br>
+          （5）T=T+e,t=t+1,k=k+1转（3）<br>
+          （6）输出T,w停止 </p>
+        <p>例1：<img src="k-1.jpg" width="376" height="140"></p>
+        <p>1.排序：<br>
+          e1'=1,e2'=1,e3'=2,e4'=2,e5'=2,e6'=3,e7'=3,e8'=3,e9'=4<br>
+          e10'=4,e11'=4,e12'=5,e13'=6,e14'=6,e15'=7,e16'=7,e17'=8</p>
+        <p>2.循环 e(i)' ,i=1,2,3...m<br>
+          .e5'成回路，省略掉</p>
+        <p><br>
+          结果：<img src="k-2.jpg" width="244" height="109"></p>
+        <p>Krusal法很难用程序实现。<a href="mailto:tony880@etang.com">如果您有程序请寄给我</a> </p>
+        <p>时间复杂度：O(mlog[2]m) </p>
+        <p></p>
+      </td>
+      <td width="11" valign="top" height="19"> </td>
+      <td width="53" background="../images/g-06.gif" height="19">　</td>
+    </tr>
+  </table>
+  <table border="0" width="754" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="100%"> 
+        <div align="center"> 
+          <div align=center><span 
+      id=$ihome_view_suggest$>建议用ie4.0以上，800*600分辨率全屏观看</span></div>
+          <div align=center>(C)2001 All rights reserved.Powered by C&amp;C Union<br>
+            <a href="http://www.dangdang.com/lianmeng/league/login/login.asp?userid=P-1036871"target="_blank"><img src="../images/468-4.gif" width="468" height="60"></a> 
+            　</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

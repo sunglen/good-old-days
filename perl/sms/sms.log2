@@ -1,0 +1,8 @@
+   URL=http://www.zexiao.com/sms/index.asp (GET)
+STATUS=HTTP/1.1 200 OK 
+   URL=http://www.zexiao.com/sms/index.asp (POST)
+STATUS=HTTP/1.1 302 Object moved 
+   URL=http://www.bkwww.com/sms/zexiao.asp?s=z8ggyfo6fDEzNTQ1MTg3NjgwfHNzc3NkZmRmfGFzZA== (GET)
+STATUS=HTTP/1.1 302 Object moved 
+   URL=http://www.zexiao.com/sms/index.asp (GET)
+STATUS=HTTP/1.1 200 OK 
